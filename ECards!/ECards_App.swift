@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 @main
 struct ECards_App: App {
+    
+    init() {
+        FirebaseApp.configure()
+      }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
