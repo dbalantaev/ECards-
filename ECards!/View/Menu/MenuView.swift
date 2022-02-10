@@ -8,31 +8,41 @@
 import SwiftUI
 
 struct MenuView: View {
+    
+    @State private var game = false
+    @State private var words = false
+    
     var body: some View {
         NavigationView {
             ZStack {
-                Image("backgr")
+                Image("3232")
                     .resizable(resizingMode: .tile)
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-                     
-                        Image("ECards! with no shadow")
-                            .resizable()
-                            .frame(width: 250, height: 72, alignment: .center)
-                            .padding(.horizontal, 1)
-                            .padding([.top, .leading, .trailing], 0.0)
-                            .offset(y: 80)
-                            .shadow(color: .black, radius: 10, x: 10, y: 10)
+                    HStack {
+                        Text("ECards!")
+                            .fontWeight(.heavy)
+                            .font(.largeTitle)
+                            .padding(.top, 30)
+                            .padding()
+                            .foregroundColor(.white)
+                            .shadow(color: .black, radius: 20, x: 5, y: 5)
+                        Spacer()
                         NavigationLink(destination: SettingsView()) {
                             Image(systemName: "gearshape.fill")
                                 .resizable()
                                 .frame(width: 25, height: 25)
                                 .foregroundColor(.white)
-                        }.offset(x: 160, y: -50)
-                    
+                                .shadow(color: .black, radius: 20, x: 5, y: 5)
+                        }
+                        .padding(.top, 30)
+                        .padding()
+                    }
                     Spacer()
                     VStack {
-                        NavigationLink(destination: GameView()) {
+                        Button(action: {
+                            self.game.toggle()
+                        }) {
                             Text("Сыграть сейчас")
                                 .multilineTextAlignment(.center)
                                 .frame(height: 58)
@@ -44,15 +54,22 @@ struct MenuView: View {
                                 .padding(.horizontal, 10)
                                 .padding(.vertical)
                                 .shadow(color: .black, radius: 20, x: 5, y: 5)
-                        }.navigationBarHidden(true)
-                        NavigationLink(destination: WordsView()) {
-                            Text("Посмотреть слова еще раз")
+                        }.fullScreenCover(isPresented: $game) {
+                            GameView()
+                        }
+                        Button(action: {
+                            self.words.toggle()
+                        }) {
+                            Text("Посмотреть слова")
                                 .foregroundColor(.white)
+                                .shadow(color: .black, radius: 5, x: 5, y: 5)
                                 .padding(.all)
-                        }.navigationBarHidden(true)
+                        }.sheet(isPresented: $words) {
+                            WordsView()
+                        }
                     }
                 }
-            }
+            }.navigationBarHidden(true)
         }.navigationBarHidden(true)
     }
 }

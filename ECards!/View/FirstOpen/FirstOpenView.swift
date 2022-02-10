@@ -23,7 +23,7 @@ struct FirstOpenView: View {
                         .frame(width: 366.0, height: 5)
                         .offset(y: 300)
                         .padding(.all)
-                    Text(" Добро пожаловать в ECards")
+                    Text(" Добро пожаловать в ECards!")
                         .font(.title)
                         .fontWeight(.light)
                         .multilineTextAlignment(.center)

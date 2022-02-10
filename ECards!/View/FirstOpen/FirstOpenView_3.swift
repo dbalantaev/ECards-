@@ -30,7 +30,7 @@ struct FirstOpenView_3: View {
                         .shadow(color: .black, radius: 30, x: 10, y: 10)
                 }
                 Spacer()
-                NavigationLink(destination: WordsView()) {
+                NavigationLink(destination: MenuView()) {
                     VStack {
                         Text("Начать")
                             .foregroundColor(.black)

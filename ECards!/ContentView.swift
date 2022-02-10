@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-extension UserDefaults {
-    var welcomeScreenShown: Bool {
-        get {
-            return(UserDefaults.standard.value(forKey: "welcomeScreenShown") as? Bool) ?? false
-        }
-        set {
-            UserDefaults.standard.setValue(newValue, forKey: "welcomeScreenShown")
-        }
-    }
-}
-
 struct ContentView: View {
     
     @State var status = UserDefaults.standard.value(forKey: "status") as? Bool ?? false
@@ -45,6 +34,18 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+
+extension UserDefaults {
+    var welcomeScreenShown: Bool {
+        get {
+            return(UserDefaults.standard.value(forKey: "welcomeScreenShown") as? Bool) ?? false
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "welcomeScreenShown")
+        }
     }
 }
 

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WordsView: View {
+    @Environment(\.presentationMode) var wordsview
+    
     var body: some View {
         ZStack {
             VStack {
@@ -20,9 +22,6 @@ struct WordsView: View {
                 Spacer()
                 VStack {
                     List {
-//                        Text("manners - манеры, поведение")
-//                            .fontWeight(.bold)
-//                            .multilineTextAlignment(.center)
                         Text("hi - привет")
                         Text("hello - здравстуйте, привет")
                         Text("sorry - извините")
@@ -35,18 +34,18 @@ struct WordsView: View {
                     }
                 }
                 Spacer()
-                NavigationLink(destination: MenuView()) {
-                    VStack {
-                        Text("Запомнил!")
-                            .foregroundColor(.black)
-                            .frame(height: 55)
-                            .padding(.horizontal, 75)
-                            .background(Color.yellow)
-                            .cornerRadius(26)
-                            .padding(.horizontal, 50)
-                    }
-                }.navigationBarHidden(true)
-                    .offset(y: -25)
+                Button(action: {
+                    wordsview.wrappedValue.dismiss()
+                }) {
+                    Text("Запомнил!")
+                        .foregroundColor(.black)
+                        .frame(height: 55)
+                        .padding(.horizontal, 75)
+                        .background(Color.yellow)
+                        .cornerRadius(26)
+                        .padding(.horizontal, 50)
+                }
+                .offset(y: -25)
             }
         }
     }

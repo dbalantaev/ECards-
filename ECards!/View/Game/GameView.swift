@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GameView: View {
+    @Environment(\.presentationMode) var gameview
+    
     var body: some View {
         ZStack {
             VStack {
@@ -42,18 +44,19 @@ struct GameView: View {
                         .cornerRadius(13)
                         .offset(y: 5)
                 Spacer()
-                NavigationLink(destination: MenuView()) {
-                    VStack {
-                        Text("Закончить")
-                            .foregroundColor(.black)
-                            .frame(height: 55)
-                            .padding(.horizontal, 75)
-                            .background(Color.yellow)
-                            .cornerRadius(26)
-                            .padding(.horizontal, 50)
-                    }
-                }.navigationBarHidden(true)
-                    .offset(y: -25)
+                
+                Button(action: {
+                    gameview.wrappedValue.dismiss()
+                }) {
+                    Text("Закончить")
+                        .foregroundColor(.black)
+                        .frame(height: 55)
+                        .padding(.horizontal, 75)
+                        .background(Color.yellow)
+                        .cornerRadius(26)
+                        .padding(.horizontal, 50)
+                }
+                .offset(y: -25)
             }
         }
     }
